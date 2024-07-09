@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 13:36:46 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/07 16:58:22 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/09 17:45:06 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-#include "./MLX42/include/MLX42/MLX42.h"
+# include "./MLX42/include/MLX42/MLX42.h"
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -21,12 +21,12 @@
 # include <fcntl.h>
 # define WIN_WIDTH 1500
 # define WIN_HEIGHT 1000
-#define WIN_WIDTH_MINI 700
-#define WIN_HEIGHT_MINI 700
-# define TILE_SIZE 1024
-#define MINI_TILE_SIZE 20
+# define WIN_WIDTH_MINI 700
+# define WIN_HEIGHT_MINI 700
+# define TILE_SIZE 64
+# define MINI_TILE_SIZE 20
 # define BUFFER_SIZE 42
-#define LIMIT 1.5
+# define LIMIT 1.5
 
 # define NORTH 78
 # define SOUTH 83
@@ -47,7 +47,6 @@ typedef struct s_map_info
 	char	**map;
 	int		height_map;
 	int		width_map;
-	
 }	t_map_info;
 
 typedef struct s_player
@@ -68,12 +67,11 @@ typedef struct s_img
 	mlx_t		*mlx;
 	mlx_image_t	*map;
 	mlx_image_t	*minimap;
-	mlx_image_t *north;
-	mlx_image_t *south;
-	mlx_image_t *west;
-	mlx_image_t *east;
+	mlx_image_t	*north;
+	mlx_image_t	*south;
+	mlx_image_t	*west;
+	mlx_image_t	*east;
 }	t_img;
-
 
 typedef struct s_ray_horz
 {
@@ -103,7 +101,7 @@ typedef struct s_data
 	t_img			imgs;
 	t_map_info		map_info;
 	t_player		player;
-	t_ray 			rays[WIN_WIDTH];
+	t_ray			rays[WIN_WIDTH];
 	bool			rand;
 }	t_data;
 
@@ -150,8 +148,8 @@ int			ft_lstsize(t_list *lst);
 void		print_list(t_list *head);
 
 		/* FUNCTIONS */
-void open_textures(t_data *data);
-void set_retation(t_data *data);
+void		open_textures(t_data *data);
+void		set_retation(t_data *data);
 void		trime(t_data *data);
 int			ft_strchr( char *s, int c);
 int			ft_strchr( char *s, int c);
@@ -185,12 +183,8 @@ int			ft_strchr1( char *s, int readit);
 char		*get_next_line(int fd);
 /******************************************************************************/
 
-
-
-
 void		init_game(t_data *data);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void		movement(void *data);
 int			hit_wall(t_data *data, int x, int y);
 void		draw(void *data);
 int			close_window(t_data *data);
@@ -204,7 +198,12 @@ int			keep_checking(t_data *data, int x, int y);
 int			hit_vert(t_data *data, t_vert_info info);
 int			hit_horz(t_data *data, t_horz_info info);
 void		render_walls(t_data *data, t_ray *rays);
-/// to be deleted
-void	draw_ray_line(double x0, double y0, double x1, double y1, int color, t_data *data);
-//
+/// movement
+void		movement(void *arg);
+void		move_forward(t_data *data);
+void		move_backward(t_data *data);
+void		move_left(t_data *data);
+void		move_right(t_data *data);
+
+void		mlx_draw_line(t_data *data, int x2, int y2, int color);
 #endif

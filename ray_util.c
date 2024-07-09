@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_utils.c                                        :+:      :+:    :+:   */
+/*   ray_util.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/30 11:27:53 by youchen           #+#    #+#             */
-/*   Updated: 2024/06/30 10:21:52 by ymomen           ###   ########.fr       */
+/*   Created: 2024/07/09 15:38:02 by youchen           #+#    #+#             */
+/*   Updated: 2024/07/09 15:58:14 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	keep_checking(t_data *data, int x, int y)
 {
-	if (x < 0 || x >= data->map_info.width_map * TILE_SIZE)
+	if (x < 0 || x >= data->map_info.window_width)
 		return (0);
-	if (y < 0 || y >= data->map_info.height_map * TILE_SIZE)
+	if (y < 0 || y >= data->map_info.window_height)
 		return (0);
 	return (1);
 }

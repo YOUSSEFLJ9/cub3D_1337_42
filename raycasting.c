@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/01 07:51:11 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/07 12:30:53 by ymomen           ###   ########.fr       */
+/*   Created: 2024/07/09 08:06:50 by youchen           #+#    #+#             */
+/*   Updated: 2024/07/09 17:10:01 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ double	distance(t_data *data, double x, double y, double found)
 {
 	if (found)
 	{
-		return (distance_between_points(data->player.x, data->player.y, x, y));		
+		return (
+			distance_between_points(data->player.x, data->player.y, x, y)
+		);
 	}
 	return (INT_MAX);
 }
@@ -49,32 +51,31 @@ void	short_distance(t_ray *ray, t_ray_horz horz,
 	}
 }
 
-
 void	cast_ray(double ray_angle, t_data *data, t_ray *ray)
 {
 	t_ray_horz	horz;
 	t_ray_vert	vert;
 
-	horz = cast_horz_ray(ray_angle, data);
+	(void)ray;
 	vert = cast_vert_ray(ray_angle, data);
+	horz = cast_horz_ray(ray_angle, data);
 	short_distance(ray, horz, vert, data);
+	mlx_draw_line(data, ray->wall_hit_x, ray->wall_hit_y, 0x00FF00);
 }
 
-void	cast_all_rays(t_data *data, t_ray *ray)
+void	cast_all_rays(t_data *data, t_ray *rays)
 {
-	double	ray_angle;
 	int		i;
-	int		rays_num;
+	double	ray_angle;
 
 	i = 0;
-	rays_num = data->map_info.rays_num;
-	ray_angle = data->player.rotation_angle - (data->player.fov / 2);
-	while (i < rays_num)
+	ray_angle = data->player.rotation_angle - data->player.fov / 2;
+	while (i < data->map_info.rays_num)
 	{
 		ray_angle = normalize_angle(ray_angle);
-		ray[i].ray_angle = ray_angle;
-		cast_ray(ray_angle, data, &ray[i]);
-		ray_angle += data->player.fov / rays_num;
+		rays[i].ray_angle = ray_angle;
+		cast_ray(ray_angle, data, &rays[i]);
+		ray_angle += data->player.fov / data->map_info.rays_num;
 		i++;
 	}
 }

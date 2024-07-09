@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 12:29:48 by ymomen            #+#    #+#             */
-/*   Updated: 2024/07/05 22:16:56 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/09 17:36:40 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	check_valid_map(t_data *data)
 			{
 				if (data->player.position_side)
 					return (0);
-				data->player.x = ((double)r + 0.5) * TILE_SIZE;	
+				data->player.x = ((double)r + 0.5) * TILE_SIZE;
 				data->player.y = ((double)c + 0.5) * TILE_SIZE;
 				data->player.position_side = data->map_info.map[c][r];
 			}

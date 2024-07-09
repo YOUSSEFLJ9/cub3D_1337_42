@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/01 07:51:20 by youchen           #+#    #+#             */
-/*   Updated: 2024/06/01 10:31:22 by youchen          ###   ########.fr       */
+/*   Created: 2024/07/09 15:54:32 by youchen           #+#    #+#             */
+/*   Updated: 2024/07/09 17:28:48 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,48 @@
 
 void	player_vert_facing(t_vert_info *info, double ray_angle)
 {
-	info->down = ray_angle > 0 && ray_angle < M_PI;
-	info->up = !info->down;
 	info->right = ray_angle < 0.5 * M_PI || ray_angle > 1.5 * M_PI;
 	info->left = !info->right;
+	info->down = ray_angle > 0 && ray_angle < M_PI;
+	info->up = !info->down;
 }
 
-void	init_vert_ray(t_vert_info *info, t_data *data, double ray_angle)
+void	init_vert_ray(double ray_angle, t_vert_info *vert, t_data *data)
 {
-	player_vert_facing(info, ray_angle);
-	info->x_intercept = floor(data->player.x / TILE_SIZE) * TILE_SIZE;
-	if (info->right)
-		info->x_intercept += TILE_SIZE;
-	info->y_intercept = data->player.y + (info->x_intercept - data->player.x)
-		* tan(ray_angle);
-	info->x_step = TILE_SIZE;
-	if (info->left)
-		info->x_step *= -1;
-	info->y_step = fabs(TILE_SIZE * tan(ray_angle));
-	if (info->up && info->y_step > 0)
-		info->y_step *= -1;
-	info->next_vert_touch_x = info->x_intercept;
-	info->next_vert_touch_y = info->y_intercept;
+	double	adjacent;
+	double	opposite;
+
+	player_vert_facing(vert, ray_angle);
+	vert->x_intercept = floor(data->player.x / TILE_SIZE) * TILE_SIZE;
+	if (vert->right)
+		vert->x_intercept += TILE_SIZE;
+	adjacent = vert->x_intercept - data->player.x;
+	opposite = adjacent * tan(ray_angle);
+	vert->y_intercept = data->player.y + opposite;
+	vert->x_step = TILE_SIZE;
+	if (vert->left)
+		vert->x_step *= -1;
+	vert->y_step = fabs(TILE_SIZE * tan(ray_angle));
+	if (vert->up)
+		vert->y_step *= -1;
+	vert->next_vert_touch_x = vert->x_intercept;
+	vert->next_vert_touch_y = vert->y_intercept;
 }
 
 t_ray_vert	cast_vert_ray(double ray_angle, t_data *data)
 {
-	t_ray_vert	ray;
 	t_vert_info	vert;
+	t_ray_vert	vert_ray;
 
-	init_vert_ray(&vert, data, ray_angle);
-	ray.found_hit = 0;
+	init_vert_ray(ray_angle, &vert, data);
+	vert_ray.found_hit = 0;
 	while (keep_checking(data, vert.next_vert_touch_x, vert.next_vert_touch_y))
 	{
 		if (hit_vert(data, vert))
 		{
-			ray.wall_hit_x = vert.next_vert_touch_x;
-			ray.wall_hit_y = vert.next_vert_touch_y;
-			ray.found_hit = 1;
+			vert_ray.wall_hit_x = vert.next_vert_touch_x;
+			vert_ray.wall_hit_y = vert.next_vert_touch_y;
+			vert_ray.found_hit = 1;
 			break ;
 		}
 		else
@@ -60,5 +64,5 @@ t_ray_vert	cast_vert_ray(double ray_angle, t_data *data)
 			vert.next_vert_touch_y += vert.y_step;
 		}
 	}
-	return (ray);
+	return (vert_ray);
 }

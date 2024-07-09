@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/01 07:51:28 by youchen           #+#    #+#             */
-/*   Updated: 2024/06/01 12:05:48 by youchen          ###   ########.fr       */
+/*   Created: 2024/07/09 13:44:16 by youchen           #+#    #+#             */
+/*   Updated: 2024/07/09 17:29:01 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,39 +20,42 @@ void	player_horz_facing(t_horz_info *info, double ray_angle)
 	info->left = !info->right;
 }
 
-void	init_horz_ray(t_horz_info *info, t_data *data, double ray_angle)
+void	init_horz_ray(double ray_angle, t_horz_info *horz, t_data *data)
 {
-	player_horz_facing(info, ray_angle);
-	info->y_intercept = floor(data->player.y / TILE_SIZE) * TILE_SIZE;
-	if (info->down)
-		info->y_intercept += TILE_SIZE;
-	info->x_intercept = data->player.x + (info->y_intercept - data->player.y)
-		/ tan(ray_angle);
-	info->y_step = TILE_SIZE;
-	if (info->up)
-		info->y_step *= -1;
-	info->x_step = fabs(TILE_SIZE / tan(ray_angle));
-	if (info->left && info->x_step > 0)
-		info->x_step *= -1;
-	info->next_horz_touch_x = info->x_intercept;
-	info->next_horz_touch_y = info->y_intercept;
+	double	adjacent;
+	double	opposite;
+
+	player_horz_facing(horz, ray_angle);
+	horz->y_intercept = floor(data->player.y / TILE_SIZE) * TILE_SIZE;
+	if (horz->down)
+		horz->y_intercept += TILE_SIZE;
+	opposite = horz->y_intercept - data->player.y;
+	adjacent = opposite / tan(ray_angle);
+	horz->x_intercept = data->player.x + adjacent;
+	horz->y_step = TILE_SIZE;
+	if (horz->up)
+		horz->y_step *= -1;
+	horz->x_step = fabs(TILE_SIZE / tan(ray_angle));
+	if (horz->left)
+		horz->x_step *= -1;
+	horz->next_horz_touch_x = horz->x_intercept;
+	horz->next_horz_touch_y = horz->y_intercept;
 }
 
-
-t_ray_horz	cast_horz_ray(double ray_angle, t_data *data)
+t_ray_horz	cast_horz_ray(double ray_angle, t_data	*data)
 {
 	t_horz_info	horz;
-	t_ray_horz	ray;
+	t_ray_horz	horz_ray;
 
-	init_horz_ray(&horz, data, ray_angle);
-	ray.found_hit = 0;
+	init_horz_ray(ray_angle, &horz, data);
+	horz_ray.found_hit = 0;
 	while (keep_checking(data, horz.next_horz_touch_x, horz.next_horz_touch_y))
 	{
 		if (hit_horz(data, horz))
 		{
-			ray.wall_hit_x = horz.next_horz_touch_x;
-			ray.wall_hit_y = horz.next_horz_touch_y;
-			ray.found_hit = 1;
+			horz_ray.wall_hit_x = horz.next_horz_touch_x;
+			horz_ray.wall_hit_y = horz.next_horz_touch_y;
+			horz_ray.found_hit = 1;
 			break ;
 		}
 		else
@@ -61,5 +64,5 @@ t_ray_horz	cast_horz_ray(double ray_angle, t_data *data)
 			horz.next_horz_touch_y += horz.y_step;
 		}
 	}
-	return (ray);
+	return (horz_ray);
 }
