@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 08:18:30 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/09 17:15:38 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/10 10:19:03 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,3 @@ void	movement(void *arg)
 		rotate_right(data);
 	draw(data);
 }
-

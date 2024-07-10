@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 09:52:03 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/09 11:13:28 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/10 10:18:58 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,3 @@ void	move_right(t_data *data)
 		data->player.y -= new_y;
 	}
 }
-

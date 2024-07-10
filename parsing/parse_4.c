@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:49:43 by ymomen            #+#    #+#             */
-/*   Updated: 2024/07/09 11:26:39 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/10 10:05:06 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	set_retation(t_data *data)
 	else if (c == 'E')
 		data->player.rotation_angle = 0;
 	data->player.rotation_speed = 3 * (M_PI / 180);
-	data->player.move_speed = 6;
+	data->player.move_speed = MOVE_SPEED;
 	data->player.fov = 60 * (M_PI / 180);
 	data->imgs.mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "cub3D", false);
 	data->imgs.map = mlx_new_image(data->imgs.mlx, WIN_WIDTH, WIN_HEIGHT);
