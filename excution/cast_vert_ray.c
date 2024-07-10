@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cast_vert_ray.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 15:54:32 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/09 17:28:48 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/10 13:14:03 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	player_vert_facing(t_vert_info *info, double ray_angle)
 {

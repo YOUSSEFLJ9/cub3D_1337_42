@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 13:36:46 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/10 11:04:14 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/10 13:21:45 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@
 # define WIN_HEIGHT 1000
 # define WIN_WIDTH_MINI 700
 # define WIN_HEIGHT_MINI 700
-# define TILE_SIZE 100
-# define MOVE_SPEED 6
+# define TILE_SIZE 1024
+# define MOVE_SPEED 80
 # define MINI_TILE_SIZE 20
 # define BUFFER_SIZE 42
-# define LIMIT 1.5
 
 # define NORTH 78
 # define SOUTH 83
@@ -142,6 +141,13 @@ typedef struct s_list
 	char			*str;
 	struct s_list	*next;
 }	t_list;
+
+typedef struct s_cord
+{
+	int	x;
+	int	y;
+}	t_cord;
+
 void		ft_lstclear(t_list **lst);
 void		ft_lstadd_back(t_list **lst, t_list *new);
 t_list		*ft_lstnew(char *content);
@@ -205,6 +211,4 @@ void		move_forward(t_data *data);
 void		move_backward(t_data *data);
 void		move_left(t_data *data);
 void		move_right(t_data *data);
-
-
 #endif
