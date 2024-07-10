@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ray_util.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 15:38:02 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/10 10:19:07 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/10 13:14:23 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int	keep_checking(t_data *data, int x, int y)
 {
-	if (x < 0 || x >= data->map_info.window_width)
+	if (x < 0 || x >= data->map_info.window_width * TILE_SIZE)
 		return (0);
-	if (y < 0 || y >= data->map_info.window_height)
+	if (y < 0 || y >= data->map_info.window_height * TILE_SIZE)
 		return (0);
 	return (1);
 }

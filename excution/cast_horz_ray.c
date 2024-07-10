@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cast_horz_ray.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 13:44:16 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/09 17:29:01 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/10 13:13:59 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	player_horz_facing(t_horz_info *info, double ray_angle)
 {
