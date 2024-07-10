@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 08:06:50 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/10 10:19:14 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/10 11:05:40 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,9 @@ void	cast_ray(double ray_angle, t_data *data, t_ray *ray)
 	t_ray_horz	horz;
 	t_ray_vert	vert;
 
-	(void)ray;
 	vert = cast_vert_ray(ray_angle, data);
 	horz = cast_horz_ray(ray_angle, data);
 	short_distance(ray, horz, vert, data);
-	mlx_draw_line(data, ray->wall_hit_x, ray->wall_hit_y, 0x00FF00);
 }
 
 void	cast_all_rays(t_data *data, t_ray *rays)

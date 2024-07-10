@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 13:36:46 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/10 10:13:22 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/10 11:04:14 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,5 +206,5 @@ void		move_backward(t_data *data);
 void		move_left(t_data *data);
 void		move_right(t_data *data);
 
-void		mlx_draw_line(t_data *data, int x2, int y2, int color);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:09:54 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/10 10:44:35 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/10 11:03:27 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	render_walls(t_data *data, t_ray *rays)
 	{
 		angle = rays[i].ray_angle - data->player.rotation_angle;
 		fix_distance = rays[i].distance * cos(angle);
+		printf("fix_distance: %d\n", fix_distance);
 		if (fix_distance <= 0)
 			fix_distance = 1;
 		wall_height = (scale / fix_distance);
