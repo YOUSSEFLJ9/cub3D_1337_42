@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 09:52:03 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/10 13:14:10 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/11 08:58:44 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,63 +15,63 @@
 void	move_forward(t_data *data)
 {
 	int	mv_speed;
-	int	new_x;
-	int	new_y;
+	int	adjacent;
+	int	oposite;
 
 	mv_speed = data->player.move_speed;
-	new_x = mv_speed * cos(data->player.rotation_angle);
-	new_y = mv_speed * sin(data->player.rotation_angle);
-	if (!hit_wall(data, data->player.x + new_x, data->player.y + new_y))
+	adjacent = mv_speed * cos(data->player.rotation_angle);
+	oposite = mv_speed * sin(data->player.rotation_angle);
+	if (!validate_step(data, adjacent, oposite, 0))
 	{
-		data->player.x += new_x;
-		data->player.y += new_y;
+		data->player.x += adjacent;
+		data->player.y += oposite;
 	}
 }
 
 void	move_backward(t_data *data)
 {
 	int	mv_speed;
-	int	new_x;
-	int	new_y;
+	int	adjacent;
+	int	oposite;
 
 	mv_speed = data->player.move_speed;
-	new_x = mv_speed * cos(data->player.rotation_angle);
-	new_y = mv_speed * sin(data->player.rotation_angle);
-	if (!hit_wall(data, data->player.x - new_x, data->player.y - new_y))
+	adjacent = mv_speed * cos(data->player.rotation_angle);
+	oposite = mv_speed * sin(data->player.rotation_angle);
+	if (!validate_step(data, adjacent, oposite, 1))
 	{
-		data->player.x -= new_x;
-		data->player.y -= new_y;
+		data->player.x -= adjacent;
+		data->player.y -= oposite;
 	}
 }
 
 void	move_left(t_data *data)
 {
 	int	mv_speed;
-	int	new_x;
-	int	new_y;
+	int	adjacent;
+	int	oposite;
 
 	mv_speed = data->player.move_speed;
-	new_x = mv_speed * cos(data->player.rotation_angle + M_PI_2);
-	new_y = mv_speed * sin(data->player.rotation_angle + M_PI_2);
-	if (!hit_wall(data, data->player.x + new_x, data->player.y + new_y))
+	adjacent = mv_speed * cos(data->player.rotation_angle + M_PI_2);
+	oposite = mv_speed * sin(data->player.rotation_angle + M_PI_2);
+	if (!validate_step(data, adjacent, oposite, 2))
 	{
-		data->player.x += new_x;
-		data->player.y += new_y;
+		data->player.x += adjacent;
+		data->player.y += oposite;
 	}
 }
 
 void	move_right(t_data *data)
 {
 	int	mv_speed;
-	int	new_x;
-	int	new_y;
+	int	adjacent;
+	int	oposite;
 
 	mv_speed = data->player.move_speed;
-	new_x = mv_speed * cos(data->player.rotation_angle + M_PI_2);
-	new_y = mv_speed * sin(data->player.rotation_angle + M_PI_2);
-	if (!hit_wall(data, data->player.x - new_x, data->player.y - new_y))
+	adjacent = mv_speed * cos(data->player.rotation_angle + M_PI_2);
+	oposite = mv_speed * sin(data->player.rotation_angle + M_PI_2);
+	if (!validate_step(data, adjacent, oposite, 3))
 	{
-		data->player.x -= new_x;
-		data->player.y -= new_y;
+		data->player.x -= adjacent;
+		data->player.y -= oposite;
 	}
 }

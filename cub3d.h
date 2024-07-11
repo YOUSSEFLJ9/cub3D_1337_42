@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 13:36:46 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/10 13:21:45 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/11 08:59:03 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define WIN_HEIGHT 1000
 # define WIN_WIDTH_MINI 700
 # define WIN_HEIGHT_MINI 700
-# define TILE_SIZE 1024
-# define MOVE_SPEED 80
+# define TILE_SIZE 64
+# define MOVE_SPEED 6
 # define MINI_TILE_SIZE 20
 # define BUFFER_SIZE 42
 
@@ -211,4 +211,5 @@ void		move_forward(t_data *data);
 void		move_backward(t_data *data);
 void		move_left(t_data *data);
 void		move_right(t_data *data);
+int			validate_step(t_data *data, int x, int y, int dir);
 #endif

@@ -1,9 +1,9 @@
-NO ./textures/nord.png
-SO ./textures/south.png
-WE ./textures/west.png
-EA ./textures/east.png
-F 255,100,255
-C 2,55,255
+NO ./textures/colorstone.png
+SO ./textures/barrel.png
+WE ./textures/redbrick.png
+EA ./textures/wood.png
+F 162,95,53
+C 110,169,245
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001

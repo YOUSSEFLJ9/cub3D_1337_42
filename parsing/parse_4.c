@@ -18,9 +18,9 @@ void	set_retation(t_data *data)
 
 	c = data->player.position_side;
 	if (c == 'N')
-		data->player.rotation_angle = M_PI_2;
-	else if (c == 'S')
 		data->player.rotation_angle = 3 * M_PI_2;
+	else if (c == 'S')
+		data->player.rotation_angle = M_PI_2;
 	else if (c == 'W')
 		data->player.rotation_angle = M_PI;
 	else if (c == 'E')

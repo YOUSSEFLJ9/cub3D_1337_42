@@ -97,7 +97,7 @@ void	render_walls(t_data *data, t_ray *rays)
 	double	angle;
 
 	i = 0;
-	scale = 1200000;
+	scale = 100000;
 	while (i < data->map_info.rays_num)
 	{
 		angle = rays[i].ray_angle - data->player.rotation_angle;
