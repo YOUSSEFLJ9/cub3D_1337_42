@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 13:36:46 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/11 08:59:03 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/11 10:19:08 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,13 +168,11 @@ void		free_it_v2(char **s, int i);
 void		second_parse(int fd, t_data *data, char *lst_line);
 void		free_map_info(t_data *data);
 int			parce_color(char *line);
-void		print_texture(t_map_info *map, t_data *data);
-int			parse_map(t_list *hd, t_data *data);
 int			ft_isdigit(int c);
 char		*ft_strtrim( char *s1, char *set);
 char		*ft_monstrdup( char *s1, size_t size);
 int			ft_strncmp( char *s1, char *s2, size_t n );
-int			open_file(char *file);
+
 void		read_file_parse(int ac, char **av, t_data *data);
 int			ft_strcmp(char *s1, char *s2);
 void		error_and_exit(char *s, int exite);
@@ -190,11 +188,8 @@ int			ft_strchr1( char *s, int readit);
 char		*get_next_line(int fd);
 /******************************************************************************/
 
-void		init_game(t_data *data);
-void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int			hit_wall(t_data *data, int x, int y);
 void		draw(void *data);
-int			close_window(t_data *data);
 void		cast_all_rays(t_data *data, t_ray *rays);
 void		cast_ray(double ray_angle, t_data *data, t_ray *ray);
 t_ray_horz	cast_horz_ray(double ray_angle, t_data *data);
