@@ -3,30 +3,82 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+         #
+#    By: youchen <youchen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 13:34:52 by youchen           #+#    #+#              #
-#    Updated: 2024/07/16 09:13:31 by ymomen           ###   ########.fr        #
+#    Updated: 2024/07/16 11:30:58 by youchen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-name = cub3d
-src= mandatory/excution/cub3d.c mandatory/excution/movement_extra_utils.c mandatory/excution/utils.c mandatory/excution/raycasting.c mandatory/excution/cast_vert_ray.c mandatory/excution/cast_horz_ray.c mandatory/excution/ray_util.c mandatory/excution/movment.c mandatory/excution/movement_utils.c mandatory/excution/render_walls.c mandatory/parsing/parse_1.c mandatory/parsing/utils.c mandatory/parsing/list.c mandatory/parsing/get_next_line_utils.c mandatory/parsing/get_next_line.c mandatory/parsing/utils_2.c mandatory/parsing/parse_3.c mandatory/parsing/parse_2.c mandatory/parsing/ft_memset.c mandatory/parsing/ft_strchr.c mandatory/parsing/parse_4.o
+name_bonus = cub3d_bonus
+
+src = mandatory/excution/cub3d.c \
+      mandatory/excution/movement_extra_utils.c \
+      mandatory/excution/utils.c \
+      mandatory/excution/raycasting.c \
+      mandatory/excution/cast_vert_ray.c \
+      mandatory/excution/cast_horz_ray.c \
+      mandatory/excution/ray_util.c \
+      mandatory/excution/movment.c \
+      mandatory/excution/movement_utils.c \
+      mandatory/excution/render_walls.c \
+      mandatory/parsing/parse_1.c \
+      mandatory/parsing/utils.c \
+      mandatory/parsing/list.c \
+      mandatory/parsing/get_next_line_utils.c \
+      mandatory/parsing/get_next_line.c \
+      mandatory/parsing/utils_2.c \
+      mandatory/parsing/parse_3.c \
+      mandatory/parsing/parse_2.c \
+      mandatory/parsing/ft_memset.c \
+      mandatory/parsing/ft_strchr.c \
+      mandatory/parsing/parse_4.c
+
+src_bonus = bonus/excution/cub3d.c \
+            bonus/excution/movement_extra_utils.c \
+            bonus/excution/utils.c \
+            bonus/excution/raycasting.c \
+            bonus/excution/cast_vert_ray.c \
+            bonus/excution/cast_horz_ray.c \
+            bonus/excution/ray_util.c \
+            bonus/excution/movment.c \
+            bonus/excution/movement_utils.c \
+            bonus/excution/render_walls.c \
+            bonus/parsing/parse_1.c \
+            bonus/parsing/utils.c \
+            bonus/parsing/list.c \
+            bonus/parsing/get_next_line_utils.c \
+            bonus/parsing/get_next_line.c \
+            bonus/parsing/utils_2.c \
+            bonus/parsing/parse_3.c \
+            bonus/parsing/parse_2.c \
+            bonus/parsing/ft_memset.c \
+            bonus/parsing/ft_strchr.c \
+            bonus/parsing/parse_4.c
+
 objs = $(src:.c=.o)
-flags = -Wall -Wextra -Werror -Ofast 
+objs_bonus = $(src_bonus:.c=.o)
+
+flags = -Wall -Wextra -Werror -Ofast
 cc = cc -g
+
 all: $(name)
+
+bonus: $(name_bonus)
 
 $(name): $(objs)
 	$(cc) $(flags) -o $(name) $(objs) ./MLX42/build/libmlx42.a -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+
+$(name_bonus): $(objs_bonus)
+	$(cc) $(flags) -o $(name_bonus) $(objs_bonus) ./MLX42/build/libmlx42.a -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 
 %.o: %.c cub3d.h
 	$(cc) $(flags) -c $< -o $@
 
 clean:
-	rm -f $(objs)
+	rm -f $(objs) $(objs_bonus)
 
 fclean: clean
-	rm -f $(name)
-re: fclean all
+	rm -f $(name) $(name_bonus)
 
+re: fclean all

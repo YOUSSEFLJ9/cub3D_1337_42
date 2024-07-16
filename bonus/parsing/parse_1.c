@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 17:40:46 by ymomen            #+#    #+#             */
-/*   Updated: 2024/07/16 08:55:57 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/16 11:19:59 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	init_values(t_data *data)
 	data->player.y = -1;
 	data->player.position_side = 0;
 	data->rand = true;
+	data->player.release_mouse = 0;
 }
 
 char	*identifier_parse(char *line)

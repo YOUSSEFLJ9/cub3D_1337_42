@@ -6,7 +6,7 @@
 /*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 13:36:46 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/16 10:43:06 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/16 11:27:48 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,6 +207,4 @@ void		move_backward(t_data *data);
 void		move_left(t_data *data);
 void		move_right(t_data *data);
 int			validate_step(t_data *data, int x, int y, int dir);
-void		rotate_left(t_data *data);
-void		rotate_right(t_data *data);
 #endif

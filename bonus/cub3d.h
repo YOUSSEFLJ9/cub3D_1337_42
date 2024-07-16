@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 13:36:46 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/16 08:44:50 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/16 11:29:04 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# include "./MLX42/include/MLX42/MLX42.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -23,7 +23,7 @@
 # define WIN_HEIGHT 1000
 # define WIN_WIDTH_MINI 700
 # define WIN_HEIGHT_MINI 700
-# define TILE_SIZE 512
+# define TILE_SIZE 64
 # define MOVE_SPEED 6
 # define MINI_TILE_SIZE 20
 # define BUFFER_SIZE 42
@@ -60,6 +60,7 @@ typedef struct s_player
 	double	rotation_speed;
 	double	rotation_angle;
 	int		position_side;
+	int		release_mouse;
 }	t_player;
 
 typedef struct s_img
@@ -207,4 +208,6 @@ void		move_backward(t_data *data);
 void		move_left(t_data *data);
 void		move_right(t_data *data);
 int			validate_step(t_data *data, int x, int y, int dir);
+void		rotate_left(t_data *data);
+void		rotate_right(t_data *data);
 #endif
