@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 13:36:46 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/11 10:19:08 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/16 08:44:50 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define WIN_HEIGHT 1000
 # define WIN_WIDTH_MINI 700
 # define WIN_HEIGHT_MINI 700
-# define TILE_SIZE 64
+# define TILE_SIZE 512
 # define MOVE_SPEED 6
 # define MINI_TILE_SIZE 20
 # define BUFFER_SIZE 42

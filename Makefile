@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: youchen <youchen@student.42.fr>            +#+  +:+       +#+         #
+#    By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/01 13:34:52 by youchen           #+#    #+#              #
-#    Updated: 2024/07/11 09:10:41 by youchen          ###   ########.fr        #
+#    Updated: 2024/07/16 09:13:31 by ymomen           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 name = cub3d
-src= excution/cub3d.c excution/movement_extra_utils.c excution/utils.c excution/raycasting.c excution/cast_vert_ray.c excution/cast_horz_ray.c excution/ray_util.c excution/movment.c excution/movement_utils.c excution/render_walls.c parsing/parse_1.c parsing/utils.c parsing/list.c parsing/get_next_line_utils.c parsing/get_next_line.c parsing/utils_2.c parsing/parse_3.c parsing/parse_2.c parsing/ft_memset.c parsing/ft_strchr.c parsing/parse_4.o
+src= mandatory/excution/cub3d.c mandatory/excution/movement_extra_utils.c mandatory/excution/utils.c mandatory/excution/raycasting.c mandatory/excution/cast_vert_ray.c mandatory/excution/cast_horz_ray.c mandatory/excution/ray_util.c mandatory/excution/movment.c mandatory/excution/movement_utils.c mandatory/excution/render_walls.c mandatory/parsing/parse_1.c mandatory/parsing/utils.c mandatory/parsing/list.c mandatory/parsing/get_next_line_utils.c mandatory/parsing/get_next_line.c mandatory/parsing/utils_2.c mandatory/parsing/parse_3.c mandatory/parsing/parse_2.c mandatory/parsing/ft_memset.c mandatory/parsing/ft_strchr.c mandatory/parsing/parse_4.o
 objs = $(src:.c=.o)
 flags = -Wall -Wextra -Werror -Ofast 
 cc = cc -g

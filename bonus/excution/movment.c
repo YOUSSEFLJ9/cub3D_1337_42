@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 08:18:30 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/10 13:14:17 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/16 08:01:48 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	movement(void *arg)
 		rotate_right(data);
 	if (mlx_is_key_down(data->imgs.mlx, MLX_KEY_ESCAPE))
 	{
+		// mlx_destroy_display(data->imgs.mlx);
 		mlx_close_window(data->imgs.mlx);
 	}
 	draw(data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 17:40:46 by ymomen            #+#    #+#             */
-/*   Updated: 2024/07/08 15:26:18 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/16 08:55:57 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	first_parse(int fd, t_data *data, char **line)
 	char	*idx;
 
 	*line = get_next_line(fd);
-	while (line)
+	while (*line)
 	{
 		idx = *line;
 		if (!check_txure(data, idx))
