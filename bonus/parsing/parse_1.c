@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 17:40:46 by ymomen            #+#    #+#             */
-/*   Updated: 2024/07/16 11:19:59 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/16 17:21:09 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	init_values(t_data *data)
 	data->map_info.south_txt = NULL;
 	data->map_info.west_txt = NULL;
 	data->map_info.east_txt = NULL;
-	data->map_info.floor_clr = -1;
-	data->map_info.ceiling_clr = -1;
+	data->map_info.floor = NULL;
+	data->map_info.ceiling = NULL;
 	data->map_info.map = NULL;
 	data->player.x = -1;
 	data->player.y = -1;
@@ -61,11 +61,11 @@ int	check_txure(t_data *data, char *idx)
 	else if (!ft_strncmp(idx, "EA ", 3) && ft_strlen(idx) > 4 && !mi->west_txt)
 		mi->west_txt = identifier_parse(idx + 2);
 	else if (!ft_strncmp(idx, "F ", 2) && ft_strlen(idx) > 3
-		&& mi->floor_clr == -1)
-		mi->floor_clr = parce_color(idx + 1);
+		&& !mi->floor)
+		mi->floor = identifier_parse(idx + 1);
 	else if (!ft_strncmp(idx, "C ", 2) && ft_strlen(idx) > 3
-		&& mi->ceiling_clr == -1)
-		mi->ceiling_clr = parce_color(idx + 1);
+		&& !mi->ceiling)
+		mi->ceiling = identifier_parse(idx + 1);
 	else if (ft_strcmp(idx, "\n"))
 		return (0);
 	return (1);
@@ -86,7 +86,7 @@ void	first_parse(int fd, t_data *data, char **line)
 	}
 	if (!data->map_info.north_txt || !data->map_info.south_txt \
 	|| !data->map_info.east_txt || !data->map_info.west_txt || \
-	data->map_info.floor_clr == -1 || data->map_info.ceiling_clr == -1)
+	!data->map_info.floor || !data->map_info.ceiling)
 	{
 		free_map_info(data);
 		error_and_exit("Error\nMissing textures or colors\n", -9);

@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:49:43 by ymomen            #+#    #+#             */
-/*   Updated: 2024/07/10 13:11:28 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/16 17:18:16 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ void	set_retation(t_data *data)
 		data->player.rotation_angle = M_PI;
 	else if (c == 'E')
 		data->player.rotation_angle = 0;
-	data->player.rotation_speed = 3 * (M_PI / 180);
+	data->player.rotation_speed = ROTATION_SPEED * (M_PI / 180);
 	data->player.move_speed = MOVE_SPEED;
 	data->player.fov = 60 * (M_PI / 180);
 	data->imgs.mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "cub3D", false);
 	data->imgs.map = mlx_new_image(data->imgs.mlx, WIN_WIDTH, WIN_HEIGHT);
+	data->imgs.minimap = mlx_new_image(data->imgs.mlx, WIN_WIDTH_MINI,
+			WIN_HEIGHT_MINI);
 	open_textures(data);
 }
 
@@ -52,6 +54,25 @@ void	open_textures_2(t_data *data)
 	}
 	data->imgs.east = mlx_texture_to_image(data->imgs.mlx, texture);
 }
+void open_textures_3(t_data *data)
+{
+	mlx_texture_t	*texture;
+
+	texture = mlx_load_png(data->map_info.floor);
+	if (!texture)
+	{
+		free_map_info(data);
+		error_and_exit("Error\nTexture not found\n", -9);
+	}
+	data->imgs.floor = mlx_texture_to_image(data->imgs.mlx, texture);
+	texture = mlx_load_png(data->map_info.ceiling);
+	if (!texture)
+	{
+		free_map_info(data);
+		error_and_exit("Error\nTexture not found\n", -9);
+	}
+	data->imgs.ceiling = mlx_texture_to_image(data->imgs.mlx, texture);
+}
 
 void	open_textures(t_data *data)
 {
@@ -72,8 +93,9 @@ void	open_textures(t_data *data)
 	}
 	data->imgs.south = mlx_texture_to_image(data->imgs.mlx, texture);
 	open_textures_2(data);
+	open_textures_3(data);
 	if (!data->imgs.north || !data->imgs.south || !data->imgs.west
-		|| !data->imgs.east)
+		|| !data->imgs.east || !data->imgs.floor || !data->imgs.ceiling)
 	{
 		free_map_info(data);
 		error_and_exit("Error\nTexture not found\n", -9);

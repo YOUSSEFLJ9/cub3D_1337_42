@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 13:36:46 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/16 12:59:39 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/16 17:12:49 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@
 # include <fcntl.h>
 # define WIN_WIDTH 1500
 # define WIN_HEIGHT 1000
-# define WIN_WIDTH_MINI 700
-# define WIN_HEIGHT_MINI 700
-# define TILE_SIZE 64
-# define MOVE_SPEED 6
+# define WIN_WIDTH_MINI 200
+# define WIN_HEIGHT_MINI 200
+# define TILE_SIZE 1024
+# define MOVE_SPEED 86
+# define ROTATION_SPEED 2
 # define MINI_TILE_SIZE 20
 # define BUFFER_SIZE 42
 
@@ -42,8 +43,8 @@ typedef struct s_map_info
 	char	*south_txt;
 	char	*west_txt;
 	char	*east_txt;
-	int		floor_clr;
-	int		ceiling_clr;
+	char	*floor;
+	char	*ceiling;
 	char	**map;
 	int		height_map;
 	int		width_map;
@@ -72,6 +73,8 @@ typedef struct s_img
 	mlx_image_t	*south;
 	mlx_image_t	*west;
 	mlx_image_t	*east;
+	mlx_image_t	*floor;
+	mlx_image_t	*ceiling;
 }	t_img;
 
 typedef struct s_ray_horz

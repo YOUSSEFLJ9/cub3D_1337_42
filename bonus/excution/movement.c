@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movment.c                                          :+:      :+:    :+:   */
+/*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 08:18:30 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/16 11:41:37 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/16 15:25:55 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ void	rotate_left(t_data *data)
 {
 	data->player.rotation_angle -= data->player.rotation_speed;
 	data->player.rotation_angle = normalize_angle(data->player.rotation_angle);
+	data->rand = 1;
 }
 
 void	rotate_right(t_data *data)
 {
 	data->player.rotation_angle += data->player.rotation_speed;
 	data->player.rotation_angle = normalize_angle(data->player.rotation_angle);
+	data->rand = 1;
 }
 
 void	movement(void *arg)
