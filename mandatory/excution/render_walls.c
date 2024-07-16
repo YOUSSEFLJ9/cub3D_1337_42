@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_walls.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:09:54 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/10 13:14:30 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/16 09:34:02 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	render_walls(t_data *data, t_ray *rays)
 	double	angle;
 
 	i = 0;
-	scale = 100000;
+	scale = TILE_SIZE * 1300;
 	while (i < data->map_info.rays_num)
 	{
 		angle = rays[i].ray_angle - data->player.rotation_angle;
