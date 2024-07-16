@@ -136,7 +136,7 @@ typedef struct s_vert_info
 
 /****************************** |ADD BY YOUSSEF| *****************************/
 
-		/*Linked_ls**/
+		/*Linked_ls*/
 typedef struct s_list
 {
 	char			*str;
