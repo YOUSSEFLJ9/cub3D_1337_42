@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:09:54 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/16 18:07:47 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/17 08:25:31 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	draw_wall(t_data *data, int i,
 	}
 	while (cordnt.y < data->map_info.window_height)
 	{
-		draw_img(data, cordnt, data->imgs.floor, 0);
+		mlx_put_pixel(data->imgs.map, cordnt.x, cordnt.y, data->map_info.floor);
 		cordnt.y++;
 	}
 }

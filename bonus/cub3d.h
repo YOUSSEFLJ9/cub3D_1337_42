@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 13:36:46 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/16 17:12:49 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/17 08:22:28 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ typedef struct s_map_info
 	char	*south_txt;
 	char	*west_txt;
 	char	*east_txt;
-	char	*floor;
 	char	*ceiling;
+	int		floor;
 	char	**map;
 	int		height_map;
 	int		width_map;
@@ -73,7 +73,6 @@ typedef struct s_img
 	mlx_image_t	*south;
 	mlx_image_t	*west;
 	mlx_image_t	*east;
-	mlx_image_t	*floor;
 	mlx_image_t	*ceiling;
 }	t_img;
 

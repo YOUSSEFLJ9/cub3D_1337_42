@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:49:43 by ymomen            #+#    #+#             */
-/*   Updated: 2024/07/16 17:18:16 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/17 08:17:43 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,6 @@ void open_textures_3(t_data *data)
 {
 	mlx_texture_t	*texture;
 
-	texture = mlx_load_png(data->map_info.floor);
-	if (!texture)
-	{
-		free_map_info(data);
-		error_and_exit("Error\nTexture not found\n", -9);
-	}
-	data->imgs.floor = mlx_texture_to_image(data->imgs.mlx, texture);
 	texture = mlx_load_png(data->map_info.ceiling);
 	if (!texture)
 	{
@@ -95,7 +88,7 @@ void	open_textures(t_data *data)
 	open_textures_2(data);
 	open_textures_3(data);
 	if (!data->imgs.north || !data->imgs.south || !data->imgs.west
-		|| !data->imgs.east || !data->imgs.floor || !data->imgs.ceiling)
+		|| !data->imgs.east || !data->imgs.ceiling)
 	{
 		free_map_info(data);
 		error_and_exit("Error\nTexture not found\n", -9);
