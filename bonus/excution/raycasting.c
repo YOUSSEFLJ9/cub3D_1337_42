@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 08:06:50 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/10 13:14:27 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/19 21:45:25 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	short_distance(t_ray *ray, t_ray_horz horz,
 		ray->distance = horz_distance;
 		ray->wall_hit_x = horz.wall_hit_x;
 		ray->wall_hit_y = horz.wall_hit_y;
+		ray->door = horz.door;
 		ray->was_hit_vertical = 0;
 	}
 	else
@@ -48,6 +49,7 @@ void	short_distance(t_ray *ray, t_ray_horz horz,
 		ray->wall_hit_x = vert.wall_hit_x;
 		ray->wall_hit_y = vert.wall_hit_y;
 		ray->was_hit_vertical = 1;
+		ray->door = vert.door;
 	}
 }
 

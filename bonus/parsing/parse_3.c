@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:48:34 by ymomen            #+#    #+#             */
-/*   Updated: 2024/07/17 08:40:51 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/17 16:10:02 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	valid_chars(char c)
 {
 	if (c == '1' || c == '0')
 		return (1);
-	else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	else if (c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == 'D')
 		return (1);
 	else
 		return (0);

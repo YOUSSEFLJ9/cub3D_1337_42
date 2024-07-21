@@ -6,11 +6,34 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 19:04:05 by ymomen            #+#    #+#             */
-/*   Updated: 2024/07/01 19:03:34 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/20 12:25:12 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void free_imgs(t_data *data)
+{
+	t_img	*imgs;
+
+	imgs = &data->imgs;
+	if (imgs->north)
+	mlx_delete_image(imgs->mlx, imgs->north);
+	if (imgs->south)
+		mlx_delete_image(imgs->mlx, imgs->south);
+	if (imgs->west)
+		mlx_delete_image(imgs->mlx, imgs->west);
+	if (imgs->east)
+		mlx_delete_image(imgs->mlx, imgs->east);
+	if (imgs->door)
+		mlx_delete_image(imgs->mlx, imgs->door);
+	if (imgs->ceiling)
+		mlx_delete_image(imgs->mlx, imgs->ceiling);
+	if (imgs->map)
+		mlx_delete_image(imgs->mlx, imgs->map);
+	if (imgs->minimap)
+		mlx_delete_image(imgs->mlx, imgs->minimap);
+}
 
 int	ft_isdigit(int c)
 {
@@ -30,6 +53,10 @@ void	free_map_info(t_data *data)
 		free(map->west_txt);
 	if (map->east_txt)
 		free(map->east_txt);
+	if (map->ceiling)
+		free(map->ceiling);
+	if (map->door)
+		free(map->door);
 	if (map->map)
 		free_it_v2(map->map, map->height_map);
 }

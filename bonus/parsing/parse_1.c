@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 17:40:46 by ymomen            #+#    #+#             */
-/*   Updated: 2024/07/17 08:25:09 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/20 20:37:16 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_values(t_data *data)
 	data->map_info.west_txt = NULL;
 	data->map_info.east_txt = NULL;
 	data->map_info.ceiling = NULL;
+	data->map_info.door = NULL;
 	data->map_info.floor = 0;
 	data->map_info.map = NULL;
 	data->player.x = -1;
@@ -29,6 +30,7 @@ void	init_values(t_data *data)
 	data->player.position_side = 0;
 	data->rand = true;
 	data->player.release_mouse = 0;
+	data->imgs.amination = NULL;
 }
 
 char	*identifier_parse(char *line)
@@ -65,6 +67,8 @@ int	check_txure(t_data *data, char *idx)
 		mi->ceiling = identifier_parse(idx + 1);
 	else if (!ft_strncmp(idx, "F ", 2) && ft_strlen(idx) > 3 && !mi->floor)
 		mi->floor = parce_color(idx + 1);
+	else if (!ft_strncmp(idx, "D ", 2) && ft_strlen(idx) > 3 && !mi->door)
+		mi->door = identifier_parse(idx + 1);
 	else if (ft_strcmp(idx, "\n"))
 		return (0);
 	return (1);
@@ -85,7 +89,7 @@ void	first_parse(int fd, t_data *data, char **line)
 	}
 	if (!data->map_info.north_txt || !data->map_info.south_txt \
 	|| !data->map_info.east_txt || !data->map_info.west_txt || \
-	!data->map_info.ceiling || !data->map_info.floor)
+	!data->map_info.ceiling || !data->map_info.floor || !data->map_info.door)
 	{
 		free_map_info(data);
 		error_and_exit("Error\nMissing textures or colors\n", -9);

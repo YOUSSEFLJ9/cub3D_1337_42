@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:09:54 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/17 08:25:31 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/19 21:26:14 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,19 @@ void	textures(t_data *data, t_cord cord, int wall_height, t_ray *ray)
 	if (ray->was_hit_vertical && ((ray->ray_angle >= 0 && \
 ray->ray_angle < M_PI_2) || (ray->ray_angle >= 3 * M_PI_2 \
 	&& ray->ray_angle < 2 * M_PI)))
-		draw_img(data, cord, data->imgs.east, 1);
+		draw_img(data, cord, data->imgs.east, 1 && !ray->door);
 	else if (ray->was_hit_vertical && ray->ray_angle >= M_PI_2
-		&& ray->ray_angle < 3 * M_PI_2)
+		&& ray->ray_angle < 3 * M_PI_2 && !ray->door)
 		draw_img(data, cord, data->imgs.west, 1);
 	else if (!ray->was_hit_vertical && ray->ray_angle >= 0
-		&& ray->ray_angle < M_PI)
+		&& ray->ray_angle < M_PI && !ray->door)
 		draw_img(data, cord, data->imgs.north, 1);
 	else if (!ray->was_hit_vertical && ray->ray_angle >= M_PI
-		&& ray->ray_angle < 2 * M_PI)
+		&& ray->ray_angle < 2 * M_PI && !ray->door)
 		draw_img(data, cord, data->imgs.south, 1);
+	if (ray->door)
+		draw_img(data, cord, data->imgs.door, 1);
+
 }
 
 void	draw_wall(t_data *data, int i,
@@ -79,7 +82,7 @@ void	draw_wall(t_data *data, int i,
 	cordnt.y = -1;
 	cordnt.x = i;
 	while (++cordnt.y < start)
-		draw_img(data, cordnt, data->imgs.ceiling, 0);	
+		draw_img(data, cordnt, data->imgs.ceiling, 0);
 	while (cordnt.y < end)
 	{
 		textures(data, cordnt, wall_height, ray);

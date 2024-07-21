@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 12:29:48 by ymomen            #+#    #+#             */
-/*   Updated: 2024/07/09 17:36:40 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/18 18:26:59 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,10 @@ int	check_valid_map(t_data *data)
 		r = -1;
 		while (++r < data->map_info.width_map)
 		{
-			if (ft_strchr("0NSEW", data->map_info.map[c][r])
-			&& plyr_pos(data->map_info, r, c))
+			if (ft_strchr("0NSEWD", data->map_info.map[c][r]) \
+	&& plyr_pos(data->map_info, r, c))
+				return (0);
+			if (ft_strchr("D", data->map_info.map[c][r]) && !ft_check_door(&data->map_info, c, r))
 				return (0);
 			else if (ft_strchr("NSEW", data->map_info.map[c][r]))
 			{

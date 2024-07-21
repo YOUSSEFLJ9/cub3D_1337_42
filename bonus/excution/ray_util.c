@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 15:38:02 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/10 13:14:23 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/19 21:29:22 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,17 @@ int	hit_horz(t_data *data, t_horz_info info)
 {
 	int	x;
 	int	y;
+	int hit;
 
 	x = info.next_horz_touch_x;
 	y = info.next_horz_touch_y;
 	if (info.up)
 		y--;
-	if (hit_wall(data, x, y))
+	hit = hit_wall(data, x, y);
+	if (hit == 1)
 		return (1);
+	if (hit == 2)
+		return (2);
 	return (0);
 }
 
@@ -39,12 +43,16 @@ int	hit_vert(t_data *data, t_vert_info info)
 {
 	int	x;
 	int	y;
+	int hit;
 
 	x = info.next_vert_touch_x;
 	y = info.next_vert_touch_y;
 	if (info.left)
 		x--;
-	if (hit_wall(data, x, y))
+	hit = hit_wall(data, x, y);
+	if (hit == 1)
 		return (1);
+	if (hit == 2)
+		return (2);
 	return (0);
 }

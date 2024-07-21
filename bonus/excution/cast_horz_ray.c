@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 13:44:16 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/10 13:13:59 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/19 21:44:33 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ t_ray_horz	cast_horz_ray(double ray_angle, t_data	*data)
 	{
 		if (hit_horz(data, horz))
 		{
+			if (hit_horz(data, horz) == 2)
+				horz_ray.door = 1;
+			else
+				horz_ray.door = 0;
 			horz_ray.wall_hit_x = horz.next_horz_touch_x;
 			horz_ray.wall_hit_y = horz.next_horz_touch_y;
 			horz_ray.found_hit = 1;

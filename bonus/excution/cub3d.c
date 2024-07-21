@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 13:51:56 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/16 15:40:45 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/21 13:39:14 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,10 @@ void ft_mini_map(t_data *data, int x, int y)
                     ft_draw(data, j, i, 0x004DFF);
                 else if (data->map_info.map[py / MINI_TILE_SIZE][px / MINI_TILE_SIZE] == '0')
                     ft_draw(data, j, i, 0xFFFFFFFF);
+                else if (data->map_info.map[py / MINI_TILE_SIZE][px / MINI_TILE_SIZE] == 'D')
+                    ft_draw(data, j, i, 0x663300FF);
+                else if (data->map_info.map[py / MINI_TILE_SIZE][px / MINI_TILE_SIZE] == 'O')
+                    ft_draw(data, j, i, 0x006600FF);
                 else
                     ft_draw(data, j, i, 0x000000FF);
                 if (data->map_info.map[py / MINI_TILE_SIZE][px / MINI_TILE_SIZE] == data->player.position_side)
@@ -214,6 +218,7 @@ void	cursor_rotate(double xpos, double ypos, void *param)
 		rotate_left(data);
 	else
 		rotate_right(data);
+    mlx_set_cursor_mode(data->imgs.mlx, MLX_MOUSE_HIDDEN);
 	mlx_set_mouse_pos(data->imgs.mlx, half_width, half_height);
 }
 
@@ -223,10 +228,41 @@ void	key_press(mlx_key_data_t keycode, void *param)
 
 	data = (t_data *)param;
 	if (keycode.key == MLX_KEY_E)
+    {
+        mlx_set_cursor_mode(data->imgs.mlx, MLX_MOUSE_HIDDEN);
 		data->player.release_mouse = 0;
+    }
 	else if (keycode.key == MLX_KEY_X)
+    {
+        mlx_set_cursor_mode(data->imgs.mlx, MLX_MOUSE_NORMAL);
 		data->player.release_mouse = 1;
+    }
 }
+void animation(void *arg)
+{
+    t_data      *data;
+    static int count;
+    char path[50] = "textures/frames/";
+    static int i;
+
+    data = arg;
+    count++;
+    if (count == 5)
+    {
+        count = 0;
+        if (i == 20)
+            i = 0;
+        strlcat(path, ft_itoa(i+ 10), 50);
+        strlcat(path, ".png", 50);
+        if (data->imgs.amination)
+            mlx_delete_image(data->imgs.mlx ,data->imgs.amination);
+        data->imgs.amination = NULL;
+        open_image(path, &data->imgs.amination, data);
+        mlx_image_to_window(data->imgs.mlx, data->imgs.amination, 200, 500);
+        i++;
+    }
+}
+
 
 int	main(int ac, char **av)
 {
@@ -236,9 +272,13 @@ int	main(int ac, char **av)
 	mlx_image_to_window(data.imgs.mlx, data.imgs.map, 0, 0);
 	mlx_image_to_window(data.imgs.mlx, data.imgs.minimap, 1270, 20);
 	mlx_loop_hook(data.imgs.mlx, movement, &data);
+
 	mlx_key_hook(data.imgs.mlx, key_press, &data);
 	mlx_cursor_hook(data.imgs.mlx, cursor_rotate, &data);
+    mlx_loop_hook(data.imgs.mlx, animation, &data);
 	mlx_loop(data.imgs.mlx);
 	free_map_info(&data);
+    free_imgs(&data);
+    mlx_terminate(data.imgs.mlx);
 	return (0);
 }

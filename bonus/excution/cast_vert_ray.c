@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 15:54:32 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/10 13:14:03 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/19 21:43:07 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ t_ray_vert	cast_vert_ray(double ray_angle, t_data *data)
 	{
 		if (hit_vert(data, vert))
 		{
+			if (hit_vert(data, vert) == 2)
+				vert_ray.door = 1;
+			else
+				vert_ray.door = 0;
 			vert_ray.wall_hit_x = vert.next_vert_touch_x;
 			vert_ray.wall_hit_y = vert.next_vert_touch_y;
 			vert_ray.found_hit = 1;
