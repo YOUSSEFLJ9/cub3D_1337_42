@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 13:51:56 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/16 11:22:57 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/21 13:56:02 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ int	main(int ac, char **av)
 	mlx_loop_hook(data.imgs.mlx, movement, &data);
 	mlx_loop(data.imgs.mlx);
 	free_map_info(&data);
+	free_imgs(&data);
+	mlx_terminate(data.imgs.mlx);
 	return (0);
 }

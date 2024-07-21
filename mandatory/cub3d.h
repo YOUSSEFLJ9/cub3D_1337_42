@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 13:36:46 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/16 11:27:48 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/21 13:58:33 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define MOVE_SPEED 6
 # define MINI_TILE_SIZE 20
 # define BUFFER_SIZE 42
+# define ROTATION_SPEED 2
 
 # define NORTH 78
 # define SOUTH 83
@@ -66,7 +67,6 @@ typedef struct s_img
 {
 	mlx_t		*mlx;
 	mlx_image_t	*map;
-	mlx_image_t	*minimap;
 	mlx_image_t	*north;
 	mlx_image_t	*south;
 	mlx_image_t	*west;
@@ -155,6 +155,7 @@ int			ft_lstsize(t_list *lst);
 void		print_list(t_list *head);
 
 		/* FUNCTIONS */
+void		free_imgs(t_data *data);
 void		open_textures(t_data *data);
 void		set_retation(t_data *data);
 void		trime(t_data *data);
