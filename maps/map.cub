@@ -1,10 +1,18 @@
-NO textures/colorstone.png
-SO textures/greystone.png
-WE textures/redbrick.png
-EA textures/bluestone.png
+EA textures/1.png
+NO textures/3.png
+SO textures/8.png
 
-F 162,95,53
-C 255,255,255
+
+WE textures/6.png
+
+
+D textures/door.png
+
+C textures/ceiling.png
+
+F 66,33,00
+
+
 111111111111111
 100000000000001
 100000000000001

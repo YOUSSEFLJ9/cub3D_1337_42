@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 13:36:46 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/21 12:37:13 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/21 15:55:42 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@
 # define SOUTH 83
 # define WEST 87
 # define EAST 69
+
+typedef enum e_move
+{
+	RUNNING,
+	WALKING,
+	SHOOTING,
+	STOP,
+}	t_move;
 
 typedef struct s_map_info
 {
@@ -96,6 +104,7 @@ typedef struct s_ray_vert
 	int			door;
 }	t_ray_vert;
 
+
 typedef struct s_ray
 {
 	double			was_hit_vertical;
@@ -108,11 +117,12 @@ typedef struct s_ray
 
 typedef struct s_data
 {
-	t_img			imgs;
-	t_map_info		map_info;
-	t_player		player;
-	t_ray			rays[WIN_WIDTH];
-	bool			rand;
+	t_move				move;
+	t_img				imgs;
+	t_map_info			map_info;
+	t_player			player;
+	t_ray				rays[WIN_WIDTH];
+	bool				rand;
 }	t_data;
 
 typedef struct s_horz_info
@@ -224,4 +234,5 @@ void		move_right(t_data *data);
 int			validate_step(t_data *data, int x, int y, int dir);
 void		rotate_left(t_data *data);
 void		rotate_right(t_data *data);
+void		running_forward(t_data *data);
 #endif

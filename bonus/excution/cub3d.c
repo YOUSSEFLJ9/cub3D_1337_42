@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 13:51:56 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/21 13:39:14 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/21 16:14:40 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,31 +238,71 @@ void	key_press(mlx_key_data_t keycode, void *param)
 		data->player.release_mouse = 1;
     }
 }
+
+int get_animated(t_data *data,int start)
+{
+    if (data->move == STOP)
+        return (0);
+    else if (data->move == WALKING)
+    {
+        if (start < 23 && start >= 0)
+            return (++start);
+        return (0);
+    }
+    else if (data->move == RUNNING)
+    {
+        if (start < 40 && start > 23)
+            return (++start);
+        return (24);
+    }
+    else if (data->move == SHOOTING)
+    {
+        if (start < 60 && start > 40)
+            return (++start);
+        return (41);
+    }
+    return (0);
+}
+
 void animation(void *arg)
 {
     t_data      *data;
     static int count;
-    char path[50] = "textures/frames/";
-    static int i;
+    char path[50];
+    strcpy(path, "textures/frames/");
+    static int start;
 
     data = arg;
     count++;
     if (count == 5)
     {
+        start = get_animated(data,start);
+        printf("%d\n", start);
         count = 0;
-        if (i == 20)
-            i = 0;
-        strlcat(path, ft_itoa(i+ 10), 50);
+        strlcat(path, ft_itoa(start), 50);
         strlcat(path, ".png", 50);
         if (data->imgs.amination)
             mlx_delete_image(data->imgs.mlx ,data->imgs.amination);
         data->imgs.amination = NULL;
         open_image(path, &data->imgs.amination, data);
-        mlx_image_to_window(data->imgs.mlx, data->imgs.amination, 200, 500);
-        i++;
+        mlx_image_to_window(data->imgs.mlx, data->imgs.amination, 0, 200);
     }
 }
 
+void mouse_press(enum mouse_key mouse_key, enum action action, enum modifier_key modifier_key, void *arg)
+{
+    (void)mouse_key;
+    (void)action;
+    (void)modifier_key;
+    t_data *data;
+    
+    data = arg;
+    if (action == MLX_PRESS)
+    {
+        if (modifier_key == MLX_MOUSE_BUTTON_LEFT)
+            data->move = SHOOTING;
+    }
+}
 
 int	main(int ac, char **av)
 {
@@ -275,6 +315,7 @@ int	main(int ac, char **av)
 
 	mlx_key_hook(data.imgs.mlx, key_press, &data);
 	mlx_cursor_hook(data.imgs.mlx, cursor_rotate, &data);
+    mlx_mouse_hook(data.imgs.mlx, mouse_press, &data);
     mlx_loop_hook(data.imgs.mlx, animation, &data);
 	mlx_loop(data.imgs.mlx);
 	free_map_info(&data);
