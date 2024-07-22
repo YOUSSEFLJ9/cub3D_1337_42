@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 08:06:50 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/19 21:45:25 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/22 08:54:45 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	short_distance(t_ray *ray, t_ray_horz horz,
 		ray->distance = vert_distance;
 		ray->wall_hit_x = vert.wall_hit_x;
 		ray->wall_hit_y = vert.wall_hit_y;
-		ray->was_hit_vertical = 1;
 		ray->door = vert.door;
+		ray->was_hit_vertical = 1;
 	}
 }
 
