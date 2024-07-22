@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 08:18:30 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/21 19:49:39 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/22 08:13:03 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	movement(void *arg)
 	t_data	*data;
 
 	data = arg;
+	data->move = NORMAL;
 	if (mlx_is_key_down(data->imgs.mlx, MLX_KEY_W)
 		|| mlx_is_key_down(data->imgs.mlx, MLX_KEY_UP))
 		move_forward(data);

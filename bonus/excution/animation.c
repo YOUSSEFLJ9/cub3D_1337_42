@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 20:07:15 by ymomen            #+#    #+#             */
-/*   Updated: 2024/07/22 00:44:54 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/22 08:14:31 by youchen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	animation(void *arg)
 	if (count == 4)
 	{
 		start = get_animated(data, start);
-		printf("%d\n", start);
 		count = 0;
 		num = ft_itoa(start);
 		strlcat(path, num, 50);
