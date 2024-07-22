@@ -1,15 +1,12 @@
-EA textures/1.png
-NO textures/3.png
-SO textures/8.png
+EA textures/wood.png
+NO textures/bluestone.png
+SO textures/greystone.png
 
 
-WE textures/6.png
+WE textures/colorstone.png
 
 
-D textures/door.png
-
-C textures/ceiling.png
-
+C 44,255,12
 F 66,33,00
 
 
