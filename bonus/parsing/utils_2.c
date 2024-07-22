@@ -6,19 +6,19 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 19:04:05 by ymomen            #+#    #+#             */
-/*   Updated: 2024/07/20 12:25:12 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/21 19:35:03 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void free_imgs(t_data *data)
+void	free_imgs(t_data *data)
 {
 	t_img	*imgs;
 
 	imgs = &data->imgs;
 	if (imgs->north)
-	mlx_delete_image(imgs->mlx, imgs->north);
+		mlx_delete_image(imgs->mlx, imgs->north);
 	if (imgs->south)
 		mlx_delete_image(imgs->mlx, imgs->south);
 	if (imgs->west)

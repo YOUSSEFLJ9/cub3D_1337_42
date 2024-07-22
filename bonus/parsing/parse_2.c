@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 12:29:48 by ymomen            #+#    #+#             */
-/*   Updated: 2024/07/18 18:26:59 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/21 19:11:18 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,9 @@ int	check_valid_map(t_data *data)
 		r = -1;
 		while (++r < data->map_info.width_map)
 		{
-			if (ft_strchr("0NSEWD", data->map_info.map[c][r]) \
-	&& plyr_pos(data->map_info, r, c))
-				return (0);
-			if (ft_strchr("D", data->map_info.map[c][r]) && !ft_check_door(&data->map_info, c, r))
+			if ((ft_strchr("0NSEWD", data->map_info.map[c][r]) && \
+plyr_pos(data->map_info, r, c)) || (ft_strchr("D", data->map_info.map[c][r]) \
+	&& !ft_check_door(&data->map_info, c, r)))
 				return (0);
 			else if (ft_strchr("NSEW", data->map_info.map[c][r]))
 			{
@@ -95,8 +94,6 @@ int	check_valid_map(t_data *data)
 			}
 		}
 	}
-	if (!data->player.position_side)
-		return (0);
 	return (1);
 }
 
@@ -115,7 +112,7 @@ void	second_parse(int fd, t_data *data, char *line)
 	close(fd);
 	ft_lstclear(&head);
 	trime(data);
-	if (!check_valid_map(data))
+	if (!check_valid_map(data) || !data->player.position_side)
 	{
 		free_map_info(data);
 		error_and_exit("Error\nduplicate player or not found.\n", -9);

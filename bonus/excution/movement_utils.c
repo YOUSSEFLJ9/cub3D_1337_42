@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 09:52:03 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/21 16:01:59 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/22 01:15:52 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,9 @@ void	running_forward(t_data *data)
 		data->player.x += adjacent;
 		data->player.y += oposite;
 		data->rand = 1;
-		data->move = RUNNING;
+		data->move = WALKING;
 	}
 }
-
 
 void	move_backward(t_data *data)
 {

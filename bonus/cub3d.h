@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 13:36:46 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/21 15:55:42 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/22 00:43:27 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <unistd.h>
-#include <string.h>
+# include <string.h>
 # include <fcntl.h>
 # define WIN_WIDTH 1500
 # define WIN_HEIGHT 1000
-# define WIN_WIDTH_MINI 200
-# define WIN_HEIGHT_MINI 200
+# define WIN_W_MINI 200
+# define WIN_H_MINI 200
 # define TILE_SIZE 1024
 # define MOVE_SPEED 96
 # define ROTATION_SPEED 3
-# define MINI_TILE_SIZE 20
+# define MINI_TS 20
 # define BUFFER_SIZE 42
 
 # define NORTH 78
@@ -37,10 +37,9 @@
 
 typedef enum e_move
 {
-	RUNNING,
+	NORMAL,
 	WALKING,
-	SHOOTING,
-	STOP,
+	ATTACKING,
 }	t_move;
 
 typedef struct s_map_info
@@ -103,7 +102,6 @@ typedef struct s_ray_vert
 	double		found_hit;
 	int			door;
 }	t_ray_vert;
-
 
 typedef struct s_ray
 {
@@ -175,11 +173,16 @@ int			ft_lstsize(t_list *lst);
 void		print_list(t_list *head);
 
 		/* FUNCTIONS */
-void	draw_img(t_data *data, t_cord cord, mlx_image_t *img, int wall);
-char	*ft_itoa(int n);
-void	open_image(char *path, mlx_image_t **img, t_data *data);
-void free_imgs(t_data *data);
-int	ft_check_door(t_map_info *map, int i, int j);
+void		ft_draw_line(t_cord strt, t_cord end, t_data *data, int color);
+void		ft_mini_map(t_data *data, int x, int y);
+void		animation(void *arg);
+void		open_door(t_data *data);
+void		close_door(t_data *data);
+void		draw_img(t_data *data, t_cord cord, mlx_image_t *img, int wall);
+char		*ft_itoa(int n);
+void		open_image(char *path, mlx_image_t **img, t_data *data);
+void		free_imgs(t_data *data);
+int			ft_check_door(t_map_info *map, int i, int j);
 void		open_textures(t_data *data);
 void		set_retation(t_data *data);
 void		trime(t_data *data);

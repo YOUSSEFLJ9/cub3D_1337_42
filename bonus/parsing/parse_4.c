@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:49:43 by ymomen            #+#    #+#             */
-/*   Updated: 2024/07/20 20:34:17 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/21 20:34:08 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int	check_edges(char **map, int i, int j)
 int	ft_check_door(t_map_info *map, int i, int j)
 {
 	int	count;
+
 	count = 0;
 	if (map->map[i][j] == 'D')
 	{
-
 		if (!check_edges(map->map, i, j))
 			return (0);
 		if (i == 0 || i == map->height_map - 1
@@ -72,8 +72,8 @@ void	set_retation(t_data *data)
 	data->player.fov = 60 * (M_PI / 180);
 	data->imgs.mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "cub3D", false);
 	data->imgs.map = mlx_new_image(data->imgs.mlx, WIN_WIDTH, WIN_HEIGHT);
-	data->imgs.minimap = mlx_new_image(data->imgs.mlx, WIN_WIDTH_MINI,
-			WIN_HEIGHT_MINI);
+	data->imgs.minimap = mlx_new_image(data->imgs.mlx, WIN_W_MINI,
+			WIN_H_MINI);
 	open_textures(data);
 }
 
@@ -99,7 +99,6 @@ void	open_textures(t_data *data)
 	open_image(data->map_info.east_txt, &(data->imgs.east), data);
 	open_image(data->map_info.ceiling, &(data->imgs.ceiling), data);
 	open_image(data->map_info.door, &(data->imgs.door), data);
-
 	if (!data->imgs.north || !data->imgs.south || !data->imgs.west
 		|| !data->imgs.east || !data->imgs.ceiling || !data->imgs.door)
 	{

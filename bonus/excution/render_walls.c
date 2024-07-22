@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:09:54 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/19 21:26:14 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/21 19:05:55 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ ray->ray_angle < M_PI_2) || (ray->ray_angle >= 3 * M_PI_2 \
 		draw_img(data, cord, data->imgs.south, 1);
 	if (ray->door)
 		draw_img(data, cord, data->imgs.door, 1);
-
 }
 
 void	draw_wall(t_data *data, int i,

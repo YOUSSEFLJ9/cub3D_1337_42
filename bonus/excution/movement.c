@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 08:18:30 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/21 15:59:42 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/21 19:49:39 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,40 +26,27 @@ void	rotate_right(t_data *data)
 	data->rand = 1;
 }
 
-void open_door(t_data *data)
+void	movement_1(t_data *data)
 {
-	int	x;
-	int	y;
-
-	x = data->player.x / TILE_SIZE;
-	y = data->player.y / TILE_SIZE;
-	if (data->map_info.map[y + 1][x] == 'D')
-		data->map_info.map[y + 1][x] = 'O';
-	else if (data->map_info.map[y - 1][x] == 'D')
-		data->map_info.map[y - 1][x] = 'O';
-	else if (data->map_info.map[y][x + 1] == 'D')
-		data->map_info.map[y][x + 1] = 'O';
-	else if (data->map_info.map[y][x - 1] == 'D')
-		data->map_info.map[y][x - 1] = 'O';
-	data->rand = 1;
-}
-
-void close_door(t_data *data)
-{
-	int	x;
-	int	y;
-
-	x = data->player.x / TILE_SIZE;
-	y = data->player.y / TILE_SIZE;
-	if (data->map_info.map[y + 1][x] == 'O')
-		data->map_info.map[y + 1][x] = 'D';
-	else if (data->map_info.map[y - 1][x] == 'O')
-		data->map_info.map[y - 1][x] = 'D';
-	else if (data->map_info.map[y][x + 1] == 'O')
-		data->map_info.map[y][x + 1] = 'D';
-	else if (data->map_info.map[y][x - 1] == 'O')
-		data->map_info.map[y][x - 1] = 'D';
-	data->rand = 1;
+	if (mlx_is_key_down(data->imgs.mlx, MLX_KEY_O))
+		open_door(data);
+	if (mlx_is_key_down(data->imgs.mlx, MLX_KEY_C))
+		close_door(data);
+	if (mlx_is_key_down(data->imgs.mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(data->imgs.mlx);
+	if (mlx_is_key_down(data->imgs.mlx, MLX_KEY_W)
+		&& mlx_is_key_down(data->imgs.mlx, MLX_KEY_LEFT_SHIFT))
+		running_forward(data);
+	if (mlx_is_key_down(data->imgs.mlx, MLX_KEY_E))
+	{
+		mlx_set_cursor_mode(data->imgs.mlx, MLX_MOUSE_HIDDEN);
+		data->player.release_mouse = 0;
+	}
+	else if (mlx_is_key_down(data->imgs.mlx, MLX_KEY_X))
+	{
+		mlx_set_cursor_mode(data->imgs.mlx, MLX_MOUSE_NORMAL);
+		data->player.release_mouse = 1;
+	}
 }
 
 void	movement(void *arg)
@@ -67,7 +54,6 @@ void	movement(void *arg)
 	t_data	*data;
 
 	data = arg;
-	data->move = STOP;
 	if (mlx_is_key_down(data->imgs.mlx, MLX_KEY_W)
 		|| mlx_is_key_down(data->imgs.mlx, MLX_KEY_UP))
 		move_forward(data);
@@ -82,13 +68,6 @@ void	movement(void *arg)
 		rotate_left(data);
 	if (mlx_is_key_down(data->imgs.mlx, MLX_KEY_RIGHT))
 		rotate_right(data);
-	if (mlx_is_key_down(data->imgs.mlx, MLX_KEY_O))
-		open_door(data);
-	if (mlx_is_key_down(data->imgs.mlx, MLX_KEY_C))
-		close_door(data);
-	if (mlx_is_key_down(data->imgs.mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(data->imgs.mlx);
-	if (mlx_is_key_down(data->imgs.mlx, MLX_KEY_W) && mlx_is_key_down(data->imgs.mlx, MLX_KEY_LEFT_SHIFT))
-		running_forward(data);
+	movement_1(data);
 	draw(data);
 }
