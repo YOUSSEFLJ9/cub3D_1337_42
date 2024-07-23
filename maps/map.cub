@@ -6,8 +6,8 @@ SO textures/greystone.png
 WE textures/colorstone.png
 
 
-C 44,255,12
-F 66,33,00
+C    44,    255,12
+F 44,54,55
 
 
 111111111111111

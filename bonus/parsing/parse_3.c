@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:48:34 by ymomen            #+#    #+#             */
-/*   Updated: 2024/07/17 16:10:02 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/23 12:02:24 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,33 +38,32 @@ int	valid_chars(char c)
 		return (0);
 }
 
-int	parce_color(char *line)
+int	parce_color(char *line, int i)
 {
-	int	i;
-	int	color[3];
+	int	c[3];
 	int	j;
 
-	i = 0;
-	j = 0;
-	while (j < 3)
+	j = -1;
+	while (++j < 3)
 	{
-		color[j] = 0;
+		c[j] = 0;
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
-		while (ft_isdigit(line[i]))
-			color[j] = color[j] * 10 + line[i++] - '0';
-		if (line[i] && !ft_isdigit(line[i]) && line[i] != ',' && line[i] != ' '
+		if (!ft_isdigit(line[i]))
+			return (0);
+		while (ft_isdigit(line[i]) && c[j] >= 0 && c[j] <= 255)
+			c[j] = c[j] * 10 + line[i++] - '0';
+		if (line[i] && line[i] != ',' && line[i] != ' '
 			&& line[i] != '\t' && line[i] != '\n')
 			return (0);
 		if ((line[i] == ',' && line[i + 1] == ',') || (line[i] == ',' && j > 1))
 			return (0);
-		j++;
 		i++;
 	}
-	if (color[0] < 0 || color[0] > 255 || color[1] < 0 || color[1] > 255
-		|| color[2] < 0 || color[2] > 255)
+	if (c[0] < 0 || c[0] > 255 || c[1] < 0 || c[1] > 255
+		|| c[2] < 0 || c[2] > 255)
 		return (0);
-	return (color[0] << 24 | color[1] << 16 | color[2] << 8 | 0x000000FF);
+	return (c[0] << 24 | c[1] << 16 | c[2] << 8 | 0x000000FF);
 }
 
 int	check_map_line(char *line)

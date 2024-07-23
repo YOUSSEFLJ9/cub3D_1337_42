@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 17:40:46 by ymomen            #+#    #+#             */
-/*   Updated: 2024/07/17 08:28:19 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/23 12:01:55 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ int	check_txure(t_data *data, char *idx)
 		mi->west_txt = identifier_parse(idx + 2);
 	else if (!ft_strncmp(idx, "F ", 2) && ft_strlen(idx) > 3
 		&& !mi->floor_clr)
-		mi->floor_clr = parce_color(idx + 1);
+		mi->floor_clr = parce_color(idx + 1, 0);
 	else if (!ft_strncmp(idx, "C ", 2) && ft_strlen(idx) > 3
 		&& !mi->ceiling_clr)
-		mi->ceiling_clr = parce_color(idx + 1);
+		mi->ceiling_clr = parce_color(idx + 1, 0);
 	else if (ft_strcmp(idx, "\n"))
 		return (0);
 	return (1);

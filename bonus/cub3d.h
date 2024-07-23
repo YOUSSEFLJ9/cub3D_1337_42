@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 13:36:46 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/22 00:43:27 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/23 12:02:40 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,7 @@ void		*ft_memset(void *b, int c, size_t len);
 void		free_it_v2(char **s, int i);
 void		second_parse(int fd, t_data *data, char *lst_line);
 void		free_map_info(t_data *data);
-int			parce_color(char *line);
+int			parce_color(char *line, int i);
 int			ft_isdigit(int c);
 char		*ft_strtrim( char *s1, char *set);
 char		*ft_monstrdup( char *s1, size_t size);

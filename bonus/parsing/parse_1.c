@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchen <youchen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 17:40:46 by ymomen            #+#    #+#             */
-/*   Updated: 2024/07/22 08:13:17 by youchen          ###   ########.fr       */
+/*   Updated: 2024/07/23 12:04:01 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	check_txure(t_data *data, char *idx)
 		&& !mi->ceiling)
 		mi->ceiling = identifier_parse(idx + 1);
 	else if (!ft_strncmp(idx, "F ", 2) && ft_strlen(idx) > 3 && !mi->floor)
-		mi->floor = parce_color(idx + 1);
+		mi->floor = parce_color(idx + 1, 0);
 	else if (!ft_strncmp(idx, "D ", 2) && ft_strlen(idx) > 3 && !mi->door)
 		mi->door = identifier_parse(idx + 1);
 	else if (ft_strcmp(idx, "\n"))
