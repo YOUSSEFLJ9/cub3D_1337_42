@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 13:36:46 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/23 12:02:40 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/29 16:27:02 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ typedef struct s_player
 	double	x;
 	double	y;
 	double	fov;
-	int		offset_x;
-	int		offset_y;
+	double	offset_x;
+	double	offset_y;
 	double	move_speed;
 	double	rotation_speed;
 	double	rotation_angle;

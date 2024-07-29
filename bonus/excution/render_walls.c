@@ -6,20 +6,20 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:09:54 by youchen           #+#    #+#             */
-/*   Updated: 2024/07/21 19:05:55 by ymomen           ###   ########.fr       */
+/*   Updated: 2024/07/29 16:28:17 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	get_offset_x(t_ray *ray)
+double	get_offset_x(t_ray *ray)
 {
-	int	texture_offset_x;
+	double	texture_offset_x;
 
 	if (ray->was_hit_vertical)
-		texture_offset_x = (int)ray->wall_hit_y % TILE_SIZE;
+		texture_offset_x = fmod(ray->wall_hit_y , TILE_SIZE) / TILE_SIZE;
 	else
-		texture_offset_x = (int)ray->wall_hit_x % TILE_SIZE;
+		texture_offset_x = fmod(ray->wall_hit_x , TILE_SIZE) / TILE_SIZE;
 	return (texture_offset_x);
 }
 
@@ -30,7 +30,7 @@ void	draw_img(t_data *data, t_cord cord, mlx_image_t *img, int wall)
 	int	i;
 
 	if (wall)
-		i = (data->player.offset_x + data->player.offset_y * TILE_SIZE) * 4;
+		i = ((int)(data->player.offset_x * img->width) + (int)(data->player.offset_y * img->height) * img->width) * 4;
 	else
 		i = (cord.x + cord.y * WIN_WIDTH) * 4;
 	clr[0] = img->pixels[i];
@@ -46,7 +46,7 @@ void	textures(t_data *data, t_cord cord, int wall_height, t_ray *ray)
 	int	distance;
 
 	distance = cord.y + (wall_height / 2) - (data->map_info.window_height / 2);
-	data->player.offset_y = distance * ((float)TILE_SIZE / wall_height);
+	data->player.offset_y = (distance * ((float)TILE_SIZE / wall_height)) / TILE_SIZE;
 	if (ray->was_hit_vertical && ((ray->ray_angle >= 0 && \
 ray->ray_angle < M_PI_2) || (ray->ray_angle >= 3 * M_PI_2 \
 	&& ray->ray_angle < 2 * M_PI)))
